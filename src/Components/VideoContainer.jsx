@@ -1,6 +1,7 @@
 const VideoContainer=()=>{
     return (
-        <div>VideoCoontainer</div>
+        <div className="c">
+            VideoCoontainer</div>
     )
 }
 export default VideoContainer
