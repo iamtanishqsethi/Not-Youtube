@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux"
 const SideBar=()=>{
     const isOpen=useSelector((store)=>store.app.isMenuOpen)
-    return isOpen && (
+    return isOpen && (//this is known as early return pattern
         <div className="p-5 shadow-lg col-span-1">
             <ul>
                 <li>Home</li>
