@@ -18,4 +18,17 @@ const VideoCard=({info})=>{
         </div> 
     )
 }
+
+//higher order component 
+const RedBorder=(VideoCard)=>{
+    return ()=>{
+        return(
+        <div>
+            <VideoCard/>
+        </div>
+        )
+    }
+}
+
+
 export default VideoCard
