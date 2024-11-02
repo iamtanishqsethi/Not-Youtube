@@ -1,36 +1,31 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import { toggleMenu } from '../Utils/appSlice'
+import {cacheResults} from "../Utils/searchslice";
 
 const Head=()=>{
     
     const[searchQuery,setSearchQuery]=useState("")
     const[suggestions,setSuggestions]=useState([])
     const [isFocused,setIsFocused]=useState(false)
-    console.log(isFocused)
+    // console.log(isFocused)
+    const searchCache=useSelector(store=>store.search)
+
     useEffect(()=>{
-        console.log(searchQuery)
-        //make api call after every key press 
-        //but if the difference between 2 api call is less than 200ms decline the api call 
 
-
-        const timer = setTimeout(()=>getSearchSuggestions(),200)//everytime we call the function , we need to also remove it before the next call
+        const timer = setTimeout(()=>{
+            if(searchCache[searchQuery]){
+                setSuggestions(searchCache[searchQuery])
+            }
+            else {
+                getSearchSuggestions()
+            }
+            },200)//everytime we call the function , we need to also remove it before the next call
         return ()=>{//the return of useEffect() will be called : check class based components
             clearTimeout(timer)
         }//this return function is called when the component is unmounting
     },[searchQuery])
-    /*
-    * key - "t"
-    * - render component
-    * - will call useEffect() make api call after 200 ms
-    * key - "ta"
-    * - for this , it will destroy the component (useEffect return is called)
-    * - render component again
-    * - will call useEffect() make api call again after 200 ms (new timer)
-    *
-    * if setTimeout is still counting , but new key is pressed , the current timer is declined and a new timer starts
-    * else timer expired , no new key is pressed then api call is made
-    * */
+
 
     const getSearchSuggestions=async ()=>{
         const data=await fetch("https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q="+searchQuery+"&key="+process.env.REACT_APP_KEY)
@@ -38,8 +33,12 @@ const Head=()=>{
         // console.log(json?.items[0]?.snippet?.title)
         // console.log(json?.items[1]?.snippet?.title)
         const titles=json?.items?.map((item)=>item?.snippet?.title)
-        console.log(titles)
+        // console.log(titles)
         setSuggestions(titles)
+        //update cache
+        dispatch(cacheResults({
+            [searchQuery]:titles
+        }))
     }
 
     const dispatch=useDispatch()
