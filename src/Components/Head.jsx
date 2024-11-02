@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch} from 'react-redux'
 import { toggleMenu } from '../Utils/appSlice'
-import {YOUTUBE_SEARCH_API} from "../Utils/constants"
+
 const Head=()=>{
     
     const[searchQuery,setSearchQuery]=useState("")
     const[suggestions,setSuggestions]=useState([])
+    const [isFocused,setIsFocused]=useState(false)
+    console.log(isFocused)
     useEffect(()=>{
         console.log(searchQuery)
         //make api call after every key press 
@@ -33,14 +35,22 @@ const Head=()=>{
     const getSearchSuggestions=async ()=>{
         const data=await fetch("https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q="+searchQuery+"&key="+process.env.REACT_APP_KEY)
         const json= await data.json()
-        console.log(json?.items[0]?.snippet?.title)
-        console.log(json?.items[1]?.snippet?.title)
-        // setSuggestions(json?.items[0]?.snippet?.title)
+        // console.log(json?.items[0]?.snippet?.title)
+        // console.log(json?.items[1]?.snippet?.title)
+        const titles=json?.items?.map((item)=>item?.snippet?.title)
+        console.log(titles)
+        setSuggestions(titles)
     }
 
     const dispatch=useDispatch()
     const handleClick=()=>{
         dispatch(toggleMenu())
+    }
+    const handleFocus=()=>{
+        setIsFocused(true)
+    }
+    const handleOutFocus=()=>{
+        setIsFocused(false)
     }
     // console.log(isOpen)
     return (
@@ -58,16 +68,20 @@ const Head=()=>{
                 <div className="">
                 <input className='w-2/3  border py-2 px-4 border-gray-600 bg-gray-100 rounded-l-full' type="text"
                 value={searchQuery}
-                onChange={e=>setSearchQuery(e.target.value)}/>
+                onChange={e=>setSearchQuery(e.target.value)}
+                       onFocus={()=>handleFocus()}
+                       onBlur={()=>handleOutFocus()}
+
+                />
                 <button className='border bg-gray-100 border-gray-600 py-2 px-4 rounded-r-full'>Search</button>
                 </div>
-                <div className="fixed bg-white px-3 py-2 w-1/2 shadow-xl rounded-lg">
-                    {/*{suggestions.length!==0 && <ul>{*/}
-                    {/*    suggestions?.map((suggest )=> <li key={suggest}*/}
-                    {/*        className=" py-1 px-2 shadow-sm rounded-lg hover:bg-gray-200">🔍{suggest}</li>)*/}
-                    {/*}*/}
-                    {/*</ul>}*/}
-                </div>
+                {isFocused && <div className={`fixed bg-white px-3 py-2 w-1/2 shadow-xl rounded-lg`}>
+                    {<ul>{
+                        suggestions?.map((suggest) => <li key={suggest}
+                                                          className=" py-1 px-2 shadow-sm rounded-lg hover:bg-gray-200">🔍{suggest}</li>)
+                    }
+                    </ul>}
+                </div>}
             </div>
             <div className='col-span-1 flex items-center'>
                 <img
