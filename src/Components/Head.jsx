@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { toggleMenu } from '../Utils/appSlice'
 import {cacheResults} from "../Utils/searchslice";
+import {Link} from "react-router-dom";
 
 const Head=()=>{
     
@@ -14,12 +15,12 @@ const Head=()=>{
     useEffect(()=>{
 
         const timer = setTimeout(()=>{
-            if(searchCache[searchQuery]){
-                setSuggestions(searchCache[searchQuery])
-            }
-            else {
+            // if(searchCache[searchQuery]){
+            //     setSuggestions(searchCache[searchQuery])
+            // }
+            // else {
                 getSearchSuggestions()
-            }
+            // }
             },200)//everytime we call the function , we need to also remove it before the next call
         return ()=>{//the return of useEffect() will be called : check class based components
             clearTimeout(timer)
@@ -28,17 +29,18 @@ const Head=()=>{
 
 
     const getSearchSuggestions=async ()=>{
-        const data=await fetch("https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q="+searchQuery+"&key="+process.env.REACT_APP_KEY)
+        const data=await fetch("https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=15&q="+searchQuery+"&key="+process.env.REACT_APP_KEY)
         const json= await data.json()
+        // console.log(json)
         // console.log(json?.items[0]?.snippet?.title)
         // console.log(json?.items[1]?.snippet?.title)
-        const titles=json?.items?.map((item)=>item?.snippet?.title)
+        // const titles=json?.items?.map((item)=>item?.snippet?.title)
         // console.log(titles)
-        setSuggestions(titles)
+        setSuggestions(json?.items)
         //update cache
-        dispatch(cacheResults({
-            [searchQuery]:titles
-        }))
+        // dispatch(cacheResults({
+        //     [searchQuery]:titles
+        // }))
     }
 
     const dispatch=useDispatch()
@@ -75,11 +77,25 @@ const Head=()=>{
                 <button className='border bg-gray-100 border-gray-600 py-2 px-4 rounded-r-full'>Search</button>
                 </div>
                 {isFocused && <div className={`fixed bg-white px-3 py-2 w-1/2 shadow-xl rounded-lg`}>
-                    {<ul>{
-                        suggestions?.map((suggest) => <li key={suggest}
-                                                          className=" py-1 px-2 shadow-sm rounded-lg hover:bg-gray-200">🔍{suggest}</li>)
-                    }
-                    </ul>}
+                    {suggestions?.map((suggest) => {
+                        // console.log(suggest.id.videoId );
+                        if(suggest?.id?.kind==='youtube#video'){
+                            return (
+
+                                    <li
+                                        key={suggest?.id?.videoId }
+                                        className="py-1 px-2 shadow-sm rounded-lg hover:bg-gray-200 cursor-pointer"
+                                        onMouseDown={(e)=>e.preventDefault()}
+
+                                    >
+                                        🔍{suggest?.snippet?.title}
+                                    </li>
+
+                            );
+                        }
+
+                    })}
+
                 </div>}
             </div>
             <div className='col-span-1 flex items-center'>
