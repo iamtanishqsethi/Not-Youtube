@@ -1,10 +1,8 @@
-import ButtonList from "./ButtonList"
 import VideoContainer from "./VideoContainer"
 
 const Main=()=>{
     return (
-        <div className="col-span-11">
-            <ButtonList/>
+        <div className="col-span-11 pt-36  ">
             <VideoContainer/>
         </div>
     )

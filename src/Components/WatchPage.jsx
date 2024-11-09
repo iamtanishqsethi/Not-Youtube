@@ -12,8 +12,8 @@ const WatchPage=()=>{
         dispatch(closeMenu())
     },[])
     return(
-        <div className="col-span-11 p-5 ">
-            <div className="flex ">
+        <div className="col-span-11 p-5 pt-36 ">
+            <div className="flex flex-wrap">
                 <div>
                     <iframe
                         className="rounded-lg"
@@ -24,8 +24,7 @@ const WatchPage=()=>{
                         referrerPolicy="strict-origin-when-cross-origin" allowFullScreen>
                     </iframe>
                 </div>
-                <div className="w-full">
-
+                <div className="">
                     <LiveChat/>
                 </div>
 
