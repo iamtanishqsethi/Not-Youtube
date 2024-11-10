@@ -28,7 +28,7 @@ function App() {
     <Provider store={store}>
       
       
-      <Head/>
+
       <RouterProvider router={appRouter}/>
 
       

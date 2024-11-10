@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { toggleMenu } from '../Utils/appSlice'
 import {cacheResults} from "../Utils/searchslice";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import ButtonList from "./ButtonList";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBars, faBell, faSearch, faUser} from "@fortawesome/free-solid-svg-icons";
@@ -14,6 +14,7 @@ const Head=()=>{
     const [isFocused,setIsFocused]=useState(false)
     // console.log(isFocused)
     const searchCache=useSelector(store=>store.search)
+    const navigate=useNavigate()
 
     useEffect(()=>{
 
@@ -89,6 +90,10 @@ const Head=()=>{
                                         key={suggest?.id?.videoId}
                                         className="py-1 px-2 shadow-sm rounded-lg hover:bg-gray-200 cursor-pointer"
                                         onMouseDown={(e) => e.preventDefault()}
+                                        onClick={()=>{
+                                            navigate("/watch?v="+ suggest?.id?.videoId)
+                                            handleOutFocus()
+                                        }}
 
                                     >
                                         <FontAwesomeIcon icon={faSearch} className="px-2"/>{suggest?.snippet?.title}
