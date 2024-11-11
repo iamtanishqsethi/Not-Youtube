@@ -23,17 +23,17 @@ const WatchPage=()=>{
 
     return(
         <div className="col-span-11 p-5 pt-36 ">
-            <div className="flex flex-wrap">
-                <div>
+            <div className="flex flex-wrap justify-between">
+                <div className="w-[63%]">
                     <iframe
-                        className="rounded-lg"
+                        className="rounded-lg w-full"
                         width="1000" height="500"
                         src={"https://www.youtube.com/embed/" + searchParams.get("v")+ "?&autoplay=1"} title="YouTube video player"
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         referrerPolicy="strict-origin-when-cross-origin" allowFullScreen>
                     </iframe>
-                    <div className="m-4 px-5 py-3 bg-gray-100 rounded-lg shadow-xl">
+                    <div className="m-4 px-5 py-3 bg-gray-100 rounded-lg shadow-xl w-4/5">
                         <h1 className="text-2xl font-bold">{title}</h1>
                         <div className="flex items-center justify-between">
                             <h1 className="font-lg p-2 font-medium">Views: {viewCount}</h1>

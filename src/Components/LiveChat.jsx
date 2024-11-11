@@ -23,7 +23,7 @@ const LiveChat=()=>{
         <div className="">
             <h1 className="mx-4 shadow-xl p-3 rounded-lg  items-center text-center text-lg font-bold ">Live chat</h1>
             <div
-                className="mx-4  p-4 border-black border-2  h-[420px] rounded-lg bg-slate-100 overflow-y-scroll flex flex-col-reverse ">
+                className="mx-4  p-4 border-black border-2  h-[380px] rounded-lg bg-slate-100 overflow-y-scroll flex flex-col-reverse ">
                 {/*<h1 className="">Live chat</h1>*/}
                 <div className="">
                     {
@@ -42,7 +42,7 @@ const LiveChat=()=>{
                 }
 
                 }>
-                    <input type="text" className="w-80 border-2 border-black px-1"
+                    <input type="text" className="w-80  p-1"
                            value={liveMessage}
                            onChange={
                         (e) => setLiveMessage(e.target.value)

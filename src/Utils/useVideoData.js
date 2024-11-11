@@ -5,7 +5,7 @@ const useVideoData = (videoId) => {
 
     const getVideoData = async () => {
         if (!videoId) return;
-
+        //API key 2
         try {
             const response = await fetch(`https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${videoId}&key=${process.env.REACT_APP_KEY2}`);
             const json = await response.json();
