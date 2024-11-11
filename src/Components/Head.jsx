@@ -33,19 +33,15 @@ const Head=()=>{
 
 
     const getSearchSuggestions=async ()=>{
-        const data=await fetch("https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q="+searchQuery+"&key="+process.env.REACT_APP_KEY)
+        const data=await fetch("https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q="+searchQuery+"&key="+process.env.REACT_APP_KEY2)
         const json= await data.json()
-        // console.log(json)
-        // console.log(json?.items[0]?.snippet?.title)
-        // console.log(json?.items[1]?.snippet?.title)
-        // const titles=json?.items?.map((item)=>item?.snippet?.title)
-        // console.log(titles)
         setSuggestions(json?.items)
         //update cache
         // dispatch(cacheResults({
         //     [searchQuery]:titles
         // }))
     }
+
 
     const dispatch=useDispatch()
     const handleClick=()=>{
