@@ -15,14 +15,14 @@ const VideoCard=({info})=>{
 
     return (
         <div className="transition ease-in-out p-2 m-2 w-[20rem]  rounded-lg  h-[320px]">
-            <img src={thumbnails.medium.url} alt="thumbnail" className="rounded-lg"/>
+            <img src={thumbnails?.medium?.url} alt="thumbnail" className="rounded-lg"/>
             <ul className="py-1">
                 <div className="flex items-start ">
                     <img src={channelData?.snippet?.thumbnails?.high?.url} className="w-9 h-9 rounded-full m-2 mt-3" alt=""/>
                     <div>
                         <li className="font-medium pt-2">{title}</li>
-                        <li className="text-sm font-medium text-gray-700">{channelTitle}</li>
-                        <li className="text-sm font-medium text-gray-700">{viewCount} Views </li>
+                        <li className="text-sm font-medium text-zinc-500">{channelTitle}</li>
+                        <li className="text-sm font-medium text-zinc-500">{viewCount} Views </li>
                     </div>
 
                 </div>

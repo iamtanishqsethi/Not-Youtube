@@ -1,5 +1,7 @@
 //nested comments mock data
 //similar to old reddit comments
+import {useSelector} from "react-redux";
+
 const commentsData=[
     {
         name:"Tanishq",
@@ -83,7 +85,8 @@ const commentsData=[
 
 const Comment=({data})=>{
     const {name,text,replies}=data;
-    return <div className="flex bg-gray-200 p-1.5 rounded my-2">
+    const dark=useSelector(store=>store.app.dark);
+    return <div className={`flex ${dark?'bg-zinc-800':'bg-gray-200'} p-1.5 rounded my-2`}>
         <img
             className="w-12 p-3"
             src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png" alt="user img"/>
