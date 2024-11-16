@@ -2,72 +2,71 @@
 //similar to old reddit comments
 import {useSelector} from "react-redux";
 
-const commentsData=[
+const commentsData = [
     {
-        name:"Tanishq",
-        text:"lorem ipsum dolor sit amet",
-        replies:[
+        name: "Alice Johnson",
+        text: "This video was really insightful, thank you!",
+        replies: [
             {
-                name:"Tanishq",
-                text:"lorem ipsum dolor sit amet",
-                replies:[
+                name: "Bob Smith",
+                text: "I agree, it's very helpful.",
+                replies: [
                     {
-                        name:"Tanishq",
-                        text:"lorem ipsum dolor sit amet",
-                        replies:[]
+                        name: "Charlie Adams",
+                        text: "Glad you found it useful!",
+                        replies: []
                     }
                 ]
             },
             {
-                name:"Tanishq",
-                text:"lorem ipsum dolor sit amet",
-                replies:[
+                name: "David Brown",
+                text: "Can anyone clarify the second point?",
+                replies: [
                     {
-                        name:"Tanishq",
-                        text:"lorem ipsum dolor sit amet",
-                        replies:[
+                        name: "Eve Williams",
+                        text: "Sure, the second point is about prioritizing tasks effectively.",
+                        replies: [
                             {
-                                name:"Tanishq",
-                                text:"lorem ipsum dolor sit amet",
-                                replies:[]
+                                name: "Frank Harris",
+                                text: "That really helped, thanks!",
+                                replies: []
                             }
                         ]
                     }
                 ]
-
             },
             {
-                name:"Tanishq",
-                text:"lorem ipsum dolor sit amet",
+                name: "Grace Clark",
+                text: "Amazing content as always!",
                 replies: []
-            },
+            }
         ]
     },
     {
-        name:"Tanishq",
-        text:"lorem ipsum dolor sit amet",
+        name: "Hannah Lee",
+        text: "Does anyone know when the next part is coming?",
         replies: []
     },
     {
-        name:"Tanishq",
-        text:"lorem ipsum dolor sit amet",
+        name: "Ian Scott",
+        text: "This is exactly what I was looking for. Subscribed!",
         replies: [
             {
-                name:"Tanishq",
-                text:"lorem ipsum dolor sit amet",
-                replies:[
+                name: "Jessica Taylor",
+                text: "Me too! This creator is so underrated.",
+                replies: [
                     {
-                        name:"Tanishq",
-                        text:"lorem ipsum dolor sit amet",
-                        replies:[
+                        name: "Kevin Moore",
+                        text: "Totally agree. Quality content right here.",
+                        replies: [
                             {
-                                name:"Tanishq",
-                                text:"lorem ipsum dolor sit amet",
-                                replies:[
+                                name: "Laura White",
+                                text: "The editing is also top-notch!",
+                                replies: [
                                     {
-                                        name:"Tanishq",
-                                        text:"lorem ipsum dolor sit amet",
-                                        replies:[]
+                                        name: "Michael Turner",
+                                        text: "Absolutely, professional-grade stuff!",
+                                        replies: []
                                     }
                                 ]
                             }
@@ -76,12 +75,13 @@ const commentsData=[
                 ]
             }
         ]
-    },{
-        name:"Tanishq",
-        text:"lorem ipsum dolor sit amet",
+    },
+    {
+        name: "Natalie King",
+        text: "Loved it! Keep up the great work!",
         replies: []
     }
-]
+];
 
 const Comment=({data})=>{
     const {name,text,replies}=data;

@@ -34,7 +34,7 @@ const Head=()=>{
 
     const getSearchSuggestions=async ()=>{
         //API key 1
-        const data=await fetch("https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q="+searchQuery+"&key="+process.env.REACT_APP_KEY)
+        const data=await fetch("https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q="+searchQuery+"&key="+process.env.REACT_APP_KEY2)
         const json= await data.json()
         setSuggestions(json?.items)
         //update cache
