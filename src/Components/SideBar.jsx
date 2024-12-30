@@ -6,7 +6,7 @@ const SideBar=()=>{
     const isOpen=useSelector((store)=>store.app.isMenuOpen)
     const dark=useSelector(store=>store.app.dark);
     return isOpen && (//this is known as early return pattern
-        <div className={`px-10 py-10  shadow-xl  ${dark?'shadow-zinc-500':'shadow-black'} rounded sticky top-36 h-screen cursor-pointer `}>
+        <div className={`px-10 py-10 mx-3 shadow-xl rounded-xl ${dark?' bg-zinc-950':''} rounded sticky top-36 h-screen cursor-pointer `}>
             <ul>
                 <li className="font-medium text-lg"><Link to="/"><FontAwesomeIcon icon={faHouse} className="px-2"/>Home</Link></li>
                 <li className="font-medium text-lg"><FontAwesomeIcon icon={faVideo} className="px-2"/>Videos</li>

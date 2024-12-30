@@ -62,16 +62,18 @@ const Head=()=>{
 
     return (
         <div className={`fixed z-10 p-2.5  ${dark?'bg-black text-gray-100':'bg-white text-black'} m-0  w-full `}>
-            <div className=' grid grid-flow-col '>
+            <div className=' grid grid-flow-col justify-between '>
                 <div className='flex col-span-1 items-center '>
                     <h1 className="cursor-pointer text-xl p-2" onClick={() => handleClick()}><FontAwesomeIcon icon={faBars} /></h1>
+                    <Link to={"/"}>
+                        {!dark && <img
+                            className='h-16 mx-2' src="https://cdn.mos.cms.futurecdn.net/8gzcr6RpGStvZFA2qRt4v6.jpg"
+                            alt="logo"/>}
+                        {dark && <img
+                            className='h-16 mx-2' src="https://www.cultofmac.com/wp-content/uploads/2018/01/YouTube-dark.jpg"
+                            alt="logo"/>}
+                    </Link>
 
-                    {!dark && <img
-                        className='h-16 mx-2' src="https://cdn.mos.cms.futurecdn.net/8gzcr6RpGStvZFA2qRt4v6.jpg"
-                        alt="logo"/>}
-                    {dark && <img
-                        className='h-16 mx-2' src="https://www.cultofmac.com/wp-content/uploads/2018/01/YouTube-dark.jpg"
-                        alt="logo"/>}
                 </div>
                 <div className='col-span-10 '>
                     <div className="py-2  ">
